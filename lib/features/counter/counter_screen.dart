@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 import 'counter_provider.dart';
 
@@ -9,12 +10,27 @@ class CounterScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final count = ref.watch(counterProvider); // escucha cambios, repinta al cambiar
+    final count = ref.watch(
+      counterProvider,
+    ); // escucha cambios, repinta al cambiar
 
     return Scaffold(
       appBar: AppBar(title: const Text('Mi primera app Flutter')),
       body: Center(
-        child: Text('Valor: $count', style: Theme.of(context).textTheme.headlineMedium),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              'Valor: $count',
+              style: Theme.of(context).textTheme.headlineMedium,
+            ),
+            const SizedBox(height: 16),
+            ElevatedButton(
+              onPressed: () => context.go('/counter2'),
+              child: const Text('Ir a Contador 2'),
+            ),
+          ],
+        ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => ref.read(counterProvider.notifier).increment(),
