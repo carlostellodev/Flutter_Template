@@ -33,6 +33,10 @@ class CounterScreen extends ConsumerWidget {
               onPressed: () => context.go('/person'),
               child: const Text('Ir a Freezed demo'),
             ),
+            ElevatedButton(
+              onPressed: () => context.go('/posts'),
+              child: const Text('Ir a Union demo'),
+            ),
           ],
         ),
       ),
