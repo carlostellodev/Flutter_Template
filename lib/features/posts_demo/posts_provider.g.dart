@@ -12,7 +12,7 @@ part of 'posts_provider.dart';
 @ProviderFor(Posts)
 final postsProvider = PostsProvider._();
 
-final class PostsProvider extends $NotifierProvider<Posts, PostsState> {
+final class PostsProvider extends $AsyncNotifierProvider<Posts, List<String>> {
   PostsProvider._()
     : super(
         from: null,
@@ -30,29 +30,21 @@ final class PostsProvider extends $NotifierProvider<Posts, PostsState> {
   @$internal
   @override
   Posts create() => Posts();
-
-  /// {@macro riverpod.override_with_value}
-  Override overrideWithValue(PostsState value) {
-    return $ProviderOverride(
-      origin: this,
-      providerOverride: $SyncValueProvider<PostsState>(value),
-    );
-  }
 }
 
-String _$postsHash() => r'42eb34fa2c69cde07677bee88712a98084700f26';
+String _$postsHash() => r'32799bac74a92790b10db625c5621aad2e6d25bb';
 
-abstract class _$Posts extends $Notifier<PostsState> {
-  PostsState build();
+abstract class _$Posts extends $AsyncNotifier<List<String>> {
+  FutureOr<List<String>> build();
   @$mustCallSuper
   @override
   WhenComplete runBuild() {
-    final ref = this.ref as $Ref<PostsState, PostsState>;
+    final ref = this.ref as $Ref<AsyncValue<List<String>>, List<String>>;
     final element =
         ref.element
             as $ClassProviderElement<
-              AnyNotifier<PostsState, PostsState>,
-              PostsState,
+              AnyNotifier<AsyncValue<List<String>>, List<String>>,
+              AsyncValue<List<String>>,
               Object?,
               Object?
             >;
