@@ -1,25 +1,11 @@
 import 'package:go_router/go_router.dart';
 
-import 'features/counter/counter_screen.dart';
-import 'features/counter2/counter2_screen.dart';
-import 'features/person_demo/person_demo_screen.dart';
-import 'features/posts_demo/posts_demo_screen.dart';
+import 'package:my_app/features/example/example_screen.dart';
 
-// go_router = define rutas por string ("/", "/detalle/123"). Escala mejor que Navigator manual.
+/// Rutas de la app. Añadir pantalla = añadir GoRoute aquí.
+/// Navegar: `context.go('/ruta')` (reemplaza) o `context.push('/ruta')` (apila).
 final router = GoRouter(
   routes: [
-    GoRoute(path: '/', builder: (context, state) => const CounterScreen()),
-    GoRoute(
-      path: '/counter2',
-      builder: (context, state) => const Counter2Screen(),
-    ),
-    GoRoute(
-      path: '/person',
-      builder: (context, state) => const PersonDemoScreen(),
-    ),
-    GoRoute(
-      path: '/posts',
-      builder: (context, state) => const PostsDemoScreen(),
-    ),
+    GoRoute(path: '/', builder: (context, state) => const ExampleScreen()),
   ],
 );

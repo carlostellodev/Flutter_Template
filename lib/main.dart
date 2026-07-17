@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'router.dart';
+import 'package:my_app/core/theme/app_theme.dart';
+import 'package:my_app/router.dart';
 
 void main() {
-  // ProviderScope = obligatorio en la raíz. Sin esto, ref.watch/read no funciona en ningún sitio.
+  // ProviderScope: obligatorio en la raíz para que Riverpod funcione.
   runApp(const ProviderScope(child: MyApp()));
 }
 
@@ -14,8 +15,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-      title: 'Mi primera app Flutter',
-      theme: ThemeData(colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple)),
+      title: 'Flutter Template',
+      theme: AppTheme.light,
+      darkTheme: AppTheme.dark,
       routerConfig: router,
     );
   }
