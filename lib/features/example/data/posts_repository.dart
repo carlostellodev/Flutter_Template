@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:my_app/core/api/api_client.dart';
 import 'package:my_app/core/api/api_exception.dart';
-import 'package:my_app/features/example/post.dart';
+import 'package:my_app/features/example/domain/post.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'posts_repository.g.dart';

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:my_app/core/api/api_exception.dart';
-import 'package:my_app/features/example/posts_provider.dart';
+import 'package:my_app/features/example/presentation/posts_provider.dart';
 
 /// Pantalla de referencia: consume un AsyncNotifier con `.when`.
 class ExampleScreen extends ConsumerWidget {

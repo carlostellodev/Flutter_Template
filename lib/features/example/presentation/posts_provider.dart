@@ -1,5 +1,5 @@
-import 'package:my_app/features/example/post.dart';
-import 'package:my_app/features/example/posts_repository.dart';
+import 'package:my_app/features/example/data/posts_repository.dart';
+import 'package:my_app/features/example/domain/post.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'posts_provider.g.dart';

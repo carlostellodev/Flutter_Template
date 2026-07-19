@@ -63,13 +63,26 @@ lib/
     theme/app_theme.dart        # ThemeData light/dark centralizado
   features/                     # 1 feature = 1 carpeta con TODO lo suyo
     example/                    # feature de referencia (bórrala al empezar tu app)
-      post.dart                 # modelo freezed
-      posts_repository.dart     # acceso a API
-      posts_provider.dart       # estado (AsyncNotifier)
-      example_screen.dart       # UI
+      domain/                   # QUÉ es la feature: modelos/entidades puros
+        post.dart               #   modelo freezed (sin saber nada de API ni UI)
+      data/                     # DE DÓNDE salen los datos: repositorios, API, DB
+        posts_repository.dart   #   habla con dio, mapea errores a ApiException
+      presentation/             # CÓMO se muestra: providers de UI, screens, widgets
+        posts_provider.dart     #   estado (AsyncNotifier)
+        example_screen.dart     #   UI
 ```
 
-**Regla feature-first:** cada feature contiene sus modelos, providers, repositorios, screens y widgets. Nada de carpetas globales `screens/`, `models/`, `widgets/` — no escalan. Si una feature crece mucho (>6 archivos), crea subcarpetas DENTRO de ella.
+**Regla feature-first:** cada feature contiene sus modelos, providers, repositorios, screens y widgets. Nada de carpetas globales `screens/`, `models/`, `widgets/` — no escalan.
+
+**Capas dentro de cada feature** (responsabilidades):
+
+| Capa | Contiene | Regla de dependencia |
+|---|---|---|
+| `domain/` | Modelos/entidades puros (freezed) | No importa NADA de data ni presentation |
+| `data/` | Repositorios, llamadas API, DB, cache | Importa domain. Nunca importa presentation |
+| `presentation/` | Providers de UI, screens, widgets | Importa domain y data. Nadie la importa a ella |
+
+Dirección de dependencias: `presentation → data → domain`. Si un archivo de `domain/` necesita importar algo de `data/`, algo va mal. En features muy pequeñas (una pantalla sin API) puedes aplanar y saltarte las subcarpetas — capas vacías no aportan.
 
 **`core/` vs `features/`:** core = infraestructura que usan todas las features (API, env, theme). Si algo lo usan 2+ features y no es de negocio, va a core.
 
@@ -253,11 +266,11 @@ Uso: `Env.miVariable`. Ojo: al cambiar `.env` hay que regenerar (compile-time, n
 
 Usa `features/example/` como referencia copy-paste.
 
-1. Carpeta `lib/features/mi_feature/`
-2. Modelo freezed si hay datos (`mi_modelo.dart`) — copia el patrón de `post.dart`
-3. Repositorio si hay API (`mi_repository.dart`) — copia `posts_repository.dart`
-4. Provider (`mi_provider.dart`) — `build()` async si carga datos (AsyncValue gratis)
-5. Screen (`mi_screen.dart`) — `ConsumerWidget` + `.when` si es async
+1. Carpeta `lib/features/mi_feature/` con `domain/`, `data/`, `presentation/`
+2. `domain/mi_modelo.dart` — modelo freezed, copia el patrón de `post.dart`
+3. `data/mi_repository.dart` — si hay API, copia `posts_repository.dart`
+4. `presentation/mi_provider.dart` — `build()` async si carga datos (AsyncValue gratis)
+5. `presentation/mi_screen.dart` — `ConsumerWidget` + `.when` si es async
 6. Ruta en `router.dart`
 7. `dart run build_runner build`
 8. `flutter analyze && flutter test`

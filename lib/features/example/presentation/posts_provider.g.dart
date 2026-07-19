@@ -8,18 +8,18 @@ part of 'posts_provider.dart';
 
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, type=warning
-/// `build()` async -> Riverpod expone AsyncValue<List<Post>> automático:
+/// `build()` async -> Riverpod expone `AsyncValue<List<Post>>` automático:
 /// loading mientras corre, data al retornar, error si lanza excepción.
 /// NO crees sealed classes manuales para loading/error: AsyncValue ya lo es.
 
 @ProviderFor(Posts)
 final postsProvider = PostsProvider._();
 
-/// `build()` async -> Riverpod expone AsyncValue<List<Post>> automático:
+/// `build()` async -> Riverpod expone `AsyncValue<List<Post>>` automático:
 /// loading mientras corre, data al retornar, error si lanza excepción.
 /// NO crees sealed classes manuales para loading/error: AsyncValue ya lo es.
 final class PostsProvider extends $AsyncNotifierProvider<Posts, List<Post>> {
-  /// `build()` async -> Riverpod expone AsyncValue<List<Post>> automático:
+  /// `build()` async -> Riverpod expone `AsyncValue<List<Post>>` automático:
   /// loading mientras corre, data al retornar, error si lanza excepción.
   /// NO crees sealed classes manuales para loading/error: AsyncValue ya lo es.
   PostsProvider._()
@@ -43,7 +43,7 @@ final class PostsProvider extends $AsyncNotifierProvider<Posts, List<Post>> {
 
 String _$postsHash() => r'596f5ab4bbb6031364f1dba5c606512ddd877dca';
 
-/// `build()` async -> Riverpod expone AsyncValue<List<Post>> automático:
+/// `build()` async -> Riverpod expone `AsyncValue<List<Post>>` automático:
 /// loading mientras corre, data al retornar, error si lanza excepción.
 /// NO crees sealed classes manuales para loading/error: AsyncValue ya lo es.
 

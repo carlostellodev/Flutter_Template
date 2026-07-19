@@ -1,7 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:my_app/features/example/post.dart';
-import 'package:my_app/features/example/posts_repository.dart';
+import 'package:my_app/features/example/data/posts_repository.dart';
+import 'package:my_app/features/example/domain/post.dart';
 import 'package:my_app/main.dart';
 
 /// Repo falso: en tests NUNCA se llama a la red.
