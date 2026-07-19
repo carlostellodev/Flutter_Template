@@ -79,11 +79,11 @@ lib/
 
 **Capas dentro de cada feature** (responsabilidades):
 
-| Capa | Contiene | Regla de dependencia |
-|---|---|---|
-| `domain/` | Modelos/entidades puros (freezed) | No importa NADA de data ni presentation |
-| `data/` | Repositorios, llamadas API, DB, cache | Importa domain. Nunca importa presentation |
-| `presentation/` | Providers de UI, screens, widgets | Importa domain y data. Nadie la importa a ella |
+| Capa            | Contiene                              | Regla de dependencia                           |
+| --------------- | ------------------------------------- | ---------------------------------------------- |
+| `domain/`       | Modelos/entidades puros (freezed)     | No importa NADA de data ni presentation        |
+| `data/`         | Repositorios, llamadas API, DB, cache | Importa domain. Nunca importa presentation     |
+| `presentation/` | Providers de UI, screens, widgets     | Importa domain y data. Nadie la importa a ella |
 
 Dirección de dependencias: `presentation → data → domain`. Si un archivo de `domain/` necesita importar algo de `data/`, algo va mal. En features muy pequeñas (una pantalla sin API) puedes aplanar y saltarte las subcarpetas — capas vacías no aportan.
 
