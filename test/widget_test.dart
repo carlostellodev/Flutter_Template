@@ -14,7 +14,8 @@ class _FakePostsRepository implements PostsRepository {
 }
 
 void main() {
-  testWidgets('App arranca y pinta los posts', (tester) async {
+  testWidgets('Arranca en Inicio y el tab Posts pinta el listado',
+      (tester) async {
     await tester.pumpWidget(
       ProviderScope(
         overrides: [
@@ -23,8 +24,13 @@ void main() {
         child: const MyApp(),
       ),
     );
+    await tester.pumpAndSettle();
 
-    // Deja que el Future del provider resuelva y se repinte.
+    // Tab inicial: Inicio con saludo.
+    expect(find.text('¡Hola! 👋'), findsOneWidget);
+
+    // Cambia al tab Posts y comprueba el listado (del repo fake).
+    await tester.tap(find.text('Posts'));
     await tester.pumpAndSettle();
 
     expect(find.text('Post de prueba'), findsOneWidget);

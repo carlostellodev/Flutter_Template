@@ -13,7 +13,7 @@ class ExampleScreen extends ConsumerWidget {
     final asyncPosts = ref.watch(postsProvider);
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Template — feature de ejemplo')),
+      appBar: AppBar(title: const Text('Posts')),
       body: asyncPosts.when(
         loading: () => const Center(child: CircularProgressIndicator()),
         data: (posts) => RefreshIndicator(

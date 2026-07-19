@@ -61,7 +61,10 @@ lib/
     api/api_exception.dart      # errores de API tipados (sealed class)
     storage/secure_storage.dart # storage cifrado + helpers de token
     theme/app_theme.dart        # ThemeData light/dark centralizado
+    navigation/app_shell.dart   # Scaffold con bottom nav (tabs)
   features/                     # 1 feature = 1 carpeta con TODO lo suyo
+    home/                       # tab Inicio (saludo de ejemplo)
+      presentation/home_screen.dart
     example/                    # feature de referencia (bórrala al empezar tu app)
       domain/                   # QUÉ es la feature: modelos/entidades puros
         post.dart               #   modelo freezed (sin saber nada de API ni UI)
@@ -210,6 +213,8 @@ Navegar desde cualquier widget:
 - `context.push('/detalle')` → **apila** (con botón atrás)
 
 Parámetros: `GoRoute(path: '/user/:id', ...)` → `state.pathParameters['id']`.
+
+**Bottom nav (tabs):** montado con `StatefulShellRoute.indexedStack` en `router.dart` + `core/navigation/app_shell.dart`. Cada tab = una `StatefulShellBranch` con sus rutas; el estado/historial de cada tab se conserva al cambiar. Añadir tab = nueva branch en `router.dart` + nueva `NavigationDestination` en `app_shell.dart` (mismo orden). Pantallas sin bottom nav (login, detalle fullscreen): `GoRoute` al mismo nivel que el shell, fuera de él.
 
 ---
 
